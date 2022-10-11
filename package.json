@@ -1,0 +1,88 @@
+{
+  "name": "elp-form",
+  "version": "1.0.0",
+  "packageManager": "pnpm@7.0.1",
+  "description": "Use tsx syntax to encapsulate element-plus Form twice to provide flexible configuration items",
+  "keywords": [
+    "elp-form",
+    "element-plus",
+    "typescript",
+    "vue3",
+    "vite",
+    "tsx"
+  ],
+  "homepage": "https://github.com/IceyWu/elp-form/tree/main/#readme",
+  "license": "MIT",
+  "author": "IceyWu",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IceyWu/elp-form"
+  },
+  "main": "dist/index.umd.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "unpkg": "dist/index.umd.js",
+  "jsdelivr": "dist/index.umd.js",
+  "exports": {
+    ".": {
+      "require": "./dist/index.umd.js",
+      "import": "./dist/index.es.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist",
+    "volar.d.ts"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "dev": "vite",
+    "test": "vitest run",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lib": "vite build && vue-tsc -p tsconfig.build.json",
+    "lint": "prettier --write  \"packages/**/*.{ts,tsx}\" \"__tests__/table.test.tsx\" \"src/*.{ts,tsx,vue}\"",
+    "lint:lint-staged": "lint-staged -c ./.husky/lintstagedrc.js",
+    "lint:pretty": "pretty-quick --staged",
+    "prepare": "husky install"
+  },
+  "peerDependencies": {
+    "element-plus": "^2.0.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "webpack"
+      ]
+    }
+  },
+  "dependencies": {
+    "element-plus": "^2.2.6",
+    "vue": "^3.2.37"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.2",
+    "@commitlint/config-conventional": "^17.0.2",
+    "@esbuild-kit/cjs-loader": "^2.2.0",
+    "@intlify/vite-plugin-vue-i18n": "^6.0.0",
+    "@types/node": "^18.0.0",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "@vitejs/plugin-vue-jsx": "^2.0.0",
+    "@vue/test-utils": "^2.0.0",
+    "husky": "^8.0.1",
+    "jsdom": "^20.0.0",
+    "lint-staged": "^13.0.2",
+    "prettier": "^2.7.1",
+    "resize-observer-polyfill": "^1.5.1",
+    "rollup": "^2.75.7",
+    "rollup-plugin-terser": "^7.0.2",
+    "sass": "^1.54.3",
+    "sass-loader": "^13.0.2",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.5",
+    "vite-svg-loader": "^3.4.0",
+    "vitest": "^0.21.1",
+    "vue-i18n": "^9.2.2",
+    "vue-tsc": "^0.39.5"
+  }
+}
