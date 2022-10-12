@@ -4,9 +4,41 @@ button:
   methods: Get Table Component Instance
   edit: Edit
   delete: Delete
+  
 text: 
   hope: Hope
   help: can help you. If you like it, please give it a star
   empty: No Data
   sure: Whether to confirm the deletion?
   console: Please open the console to watch
+  search: Search
+  addUser: Add User
+  name: Name
+  age: Age
+  address: Address
+  date: Date
+  startDate: Start Date
+  endDate: End Date
+  username: Username
+  password: Password
+  email: Email
+  phone: Phone
+  role: Role
+  account: Account
+  status: Status
+  all: All
+  abel: Able
+  disable: Disable
+
+placeholder:
+  name: Please enter name
+  age: Please enter age
+  address: Please enter address
+  date: Please enter date
+  username: Please enter username
+  password: Please enter password
+  email: Please enter email
+  phone: Please enter phone
+  role: Please enter role
+  account: Please enter account
+  status: Please enter status

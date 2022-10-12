@@ -1,9 +1,8 @@
-
 export interface formBuilderProps {
   label?: string;
   type?: string;
   value?: string;
-  defaultValue?: string;
+  defaultValue?: any;
   attribute?: any;
   rowIndex?: number;
 }

@@ -24,37 +24,39 @@
     </el-tooltip>
   </el-space>
 
-  <div>
-    <ElpForm
-      :formItems="formItems"
-      :rules="rules"
-      :submitLoading="submitLoading"
-      :layoutConfig="layoutConfig"
-      @resetForm="resetForm"
-      @search="search"
-    >
-      1212</ElpForm
-    >
-  </div>
-  <div>
-    <h2>添加用户</h2>
-    <el-button type="primary" @click="dialogVisible = true">添加账号</el-button>
-    <el-dialog v-model="dialogVisible" title="添加账号" width="40%">
+  <div class="container">
+    <el-card class="box-card">
+      <template #header>
+        <div class="card-header">
+          <span>{{ t("text.search") }}</span>
+        </div>
+      </template>
+      <ElpForm
+        :formItems="formItems"
+        :rules="rules"
+        :submitLoading="submitLoading"
+        :formAttr="{ inline: true }"
+        @resetForm="resetForm"
+        @search="search"
+      >
+      </ElpForm>
+    </el-card>
+
+    <el-card class="box-card" style="width: 480px">
+      <template #header>
+        <div class="card-header">
+          <span>{{ t("text.addUser") }}</span>
+        </div>
+      </template>
       <ElpForm
         :formItems="addUserForm"
         :rules="rules"
         :submitLoading="submitLoading"
         @resetForm="resetForm"
         @search="search"
-      />
-    </el-dialog>
-    <ElpForm
-      :formItems="addUserForm"
-      :rules="rules"
-      :submitLoading="submitLoading"
-      @resetForm="resetForm"
-      @search="search"
-    />
+      >
+      </ElpForm>
+    </el-card>
   </div>
 </template>
 
@@ -108,7 +110,7 @@ const rules = reactive<FormRules>({
 });
 const formItems = reactive([
   {
-    label: "姓名",
+    label: t("text.name"),
     type: "input",
     value: "name",
     defaultValue: "",
@@ -116,12 +118,12 @@ const formItems = reactive([
     attribute: {
       maxlength: 20,
       clearable: true,
-      placeholder: "请输入姓名"
+      placeholder: t("text.name")
     },
     rowIndex: 0
   },
   {
-    label: "电话",
+    label: t("text.phone"),
     type: "input",
     value: "mobile",
     defaultValue: "",
@@ -130,30 +132,30 @@ const formItems = reactive([
       maxlength: 11,
       showWordLimit: true,
       clearable: true,
-      placeholder: "请输入电话"
+      placeholder: t("text.phone")
     },
     rowIndex: 1
   },
   {
-    label: "状态",
+    label: t("text.status"),
     type: "select",
     value: "selectValue",
     defaultValue: "0",
 
     attribute: {
-      placeholder: "请选择状态"
+      placeholder: t("text.status")
     },
     options: [
       {
-        label: "全部",
+        label: t("text.all"),
         value: "0"
       },
       {
-        label: "启用",
+        label: t("text.abel"),
         value: "1"
       },
       {
-        label: "禁用",
+        label: t("text.disable"),
         value: "2"
       }
     ],
@@ -161,13 +163,13 @@ const formItems = reactive([
   },
   // 日期
   {
-    label: "日期",
+    label: t("text.date"),
     type: "date",
     value: "date",
     defaultValue: "",
     attribute: {
-      startPlaceholder: "开始日期",
-      endPlaceholder: "结束日期",
+      startPlaceholder: t("text.startDate"),
+      endPlaceholder: t("text.endDate"),
       type: "datetimerange",
       // "value-format": "yyyy-MM-dd HH:mm:ss",
       "range-separator": "至",
@@ -183,39 +185,49 @@ const formItems = reactive([
 ]);
 const addUserForm = [
   {
-    label: "姓名",
+    label: t("text.username"),
+    type: "switch",
+    value: "switch",
+    defaultValue: false,
+    attribute: {
+      // placeholder: t("placeholder.username"),
+    },
+    rowIndex: 10
+  },
+  {
+    label: t("text.username"),
     type: "input",
     value: "username",
     defaultValue: "",
 
     attribute: {
-      placeholder: "请输入姓名",
+      placeholder: t("placeholder.username"),
       maxlength: 20,
       clearable: true
     },
     rowIndex: 0
   },
   {
-    label: "账号",
+    label: t("text.account"),
     type: "input",
     value: "password",
     defaultValue: "",
 
     attribute: {
-      placeholder: "请输入账号",
+      placeholder: t("placeholder.account"),
       maxlength: 20,
       clearable: true
     },
     rowIndex: 1
   },
   {
-    label: "密码",
+    label: t("text.password"),
     type: "input",
     value: "password",
     defaultValue: "",
 
     attribute: {
-      placeholder: "请输入密码",
+      placeholder: t("placeholder.password"),
       maxlength: 20,
       clearable: true
     },
@@ -263,7 +275,7 @@ const layoutConfig = [
 onMounted(() => {});
 </script>
 
-<style>
+<style lang="scss">
 .el-empty__description {
   margin: 0 !important;
 }
@@ -274,5 +286,13 @@ onMounted(() => {});
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+
+.container {
+  // background: red;
+  margin-top: 1.5rem;
+  .box-card:not(:last-child) {
+    margin-bottom: 20px;
+  }
 }
 </style>

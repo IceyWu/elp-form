@@ -1,6 +1,7 @@
 import { defineComponent, ref, PropType, reactive, computed } from "vue";
 // import type { FormInstance, FormRules } from "element-plus";
 import { formBuilderProps } from "../../types";
+// import { getPlusName, renderElement } from "../helper";
 import {
   ElForm,
   ElFormItem,
@@ -13,6 +14,7 @@ import {
   ElDatePicker,
   ElTimePicker,
   ElInputNumber,
+  ElSwitch,
   type FormInstance,
   type FormRules
 } from "element-plus";
@@ -49,7 +51,7 @@ export default defineComponent({
     const ruleFormRef = ref<FormInstance>();
     const form = reactive(
       props.formItems.reduce((acc, item: any) => {
-        acc[item.value] = "";
+        acc[item.value] = item.defaultValue;
         return acc;
       }, {})
     );
@@ -107,6 +109,12 @@ export default defineComponent({
             v-model={form[item.value]}
           />
         </ElFormItem>
+      ),
+      // Switch
+      renderSwitch: (item: any) => (
+        <ElFormItem label={item.label} prop={item.value}>
+          <ElSwitch {...(item.attribute || {})} v-model={form[item.value]} />
+        </ElFormItem>
       )
     };
 
@@ -133,6 +141,8 @@ export default defineComponent({
                             return renderElement.renderSelect(item);
                           } else if (item.type === "date") {
                             return renderElement.renderDatePicker(item);
+                          } else if (item.type === "switch") {
+                            return renderElement.renderSwitch(item);
                           }
                         })}
                     </ElCol>
@@ -146,6 +156,8 @@ export default defineComponent({
                   return renderElement.renderSelect(item);
                 } else if (item.type === "date") {
                   return renderElement.renderDatePicker(item);
+                } else if (item.type === "switch") {
+                  return renderElement.renderSwitch(item);
                 }
               })}
           <ElFormItem>
