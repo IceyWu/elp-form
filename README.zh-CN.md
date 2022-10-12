@@ -1,5 +1,5 @@
 <h1 align="center">elp-form</h1>
-<p align="center">二次封装element-plus的Form，提供灵活的配置项</p>
+<p align="center">🚀更轻松的构建基于element-plus的Form表单</p>
 
 <p align="center">
 <a href="https://www.npmjs.com/package/elp-form" target="__blank"><img src="https://img.shields.io/npm/v/elp-form?color=a1b858&label=" alt="NPM version"></a>
@@ -23,6 +23,8 @@
 npm install elp-form
 or
 pnpm add elp-form
+or
+yarn add elp-form
 ```
 
 ## 🦄 用法
@@ -42,11 +44,13 @@ import { ElpForm } from "elp-form";
 
 ### 配置项: formItems(必填)
 
+- 支持的组件类型：input,select,switch,TimeSelect
+
 ```ts
 const formItems = reactive([
   {
     label?: string;,  /** 表单标签文本 `可选` */
-    type: string, /** 表单标签类型(input,select,date) `必填` */
+    type: string, /** 表单标签类型(input,select,date...) `必填` */
     value:string,  /** 表单标签绑定值 `必填` */
     defaultValue?: string, /** 表单标签默认值 `可选` */
     attribute: {

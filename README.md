@@ -1,5 +1,5 @@
 <h1 align="center">elp-form</h1>
-<p align="center">Secondary encapsulation of element-plus Form, providing flexible configuration items</p>
+<p align="center">🚀Easier to build Form based on element-plus</p>
 
 <p align="center">
 <a href="https://www.npmjs.com/package/elp-form" target="__blank"><img src="https://img.shields.io/npm/v/elp-form?color=a1b858&label=" alt="NPM version"></a>
@@ -23,6 +23,8 @@
 npm install elp-form
 or
 pnpm add elp-form
+or
+yarn add elp-form
 ```
 
 ## 🦄 Usage
@@ -41,6 +43,8 @@ import { ElpForm } from "elp-form";
 ```
 
 ### Configuration: formItems(required)
+
+- Support component types: input, select, switch, TimeSelect
 
 ```ts
 const formItems =  reactive([
@@ -92,7 +96,6 @@ const rules = reactive<FormRules>({
 - colAttr is the same as element-plus [layout-col](https://element-plus.org/zh-CN/component/layout.html#col-%E5%B1%9E%E6%80%A7)
 
 ```ts
-// 英文
 const layoutConfig = [
   {
     rowAttr: {
