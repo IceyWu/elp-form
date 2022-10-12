@@ -38,7 +38,7 @@ const props = {
     default: () => []
   },
   formAttr: {
-    type: Object as PropType<FormInstance>,
+    type: Object,
     default: () => ({})
   }
 };

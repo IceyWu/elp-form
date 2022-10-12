@@ -8,7 +8,7 @@
 
 **中文** | [English](./README.md)
 
-<!-- - [预览地址](https://#) -->
+- [预览地址](https://pkg-demo.netlify.app/)
 
 ## 🚀 特性
 
