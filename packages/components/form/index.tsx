@@ -115,7 +115,13 @@ export default defineComponent({
         <ElFormItem label={item.label} prop={item.value}>
           <ElSwitch {...(item.attribute || {})} v-model={form[item.value]} />
         </ElFormItem>
-      )
+      ),
+      // inputNumber
+      renderInputNumber:(item: any) => (
+        <ElFormItem label={item.label} prop={item.value}>
+          <ElInputNumber {...(item.attribute || {})} v-model={form[item.value]} />
+        </ElFormItem>
+      ),
     };
 
     return () => (
@@ -143,6 +149,8 @@ export default defineComponent({
                             return renderElement.renderDatePicker(item);
                           } else if (item.type === "switch") {
                             return renderElement.renderSwitch(item);
+                          } else if (item.type === "inputNumber") {
+                            return renderElement.renderInputNumber(item);
                           }
                         })}
                     </ElCol>
