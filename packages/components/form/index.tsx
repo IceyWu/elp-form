@@ -1,7 +1,5 @@
 import { defineComponent, ref, PropType, reactive, computed } from "vue";
-// import type { FormInstance, FormRules } from "element-plus";
 import { formBuilderProps } from "../../types";
-// import { getPlusName, renderElement } from "../helper";
 import {
   ElForm,
   ElFormItem,
@@ -72,7 +70,6 @@ export default defineComponent({
       formEl.resetFields();
       emit("resetForm");
     };
-    // 如果formItems中有rowIndex则按照rowIndex进行排序,没有rowIndex则排在最后
     const formItems = computed(() => {
       const { formItems } = props;
       const formItemsWithRowIndex = formItems.filter(
@@ -134,7 +131,6 @@ export default defineComponent({
 
     return () => (
       <>
-        {/* 如果有layoutConfig则根据layoutConfig进行渲染 */}
         <ElForm
           ref={ruleFormRef}
           model={form}
