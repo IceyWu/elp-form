@@ -44,7 +44,7 @@ import { ElpForm } from "elp-form";
 
 ### 配置项: formItems(必填)
 
-- 支持的组件类型：input,select,switch,TimeSelect
+- 支持的组件类型：input,select,switch,TimeSelect, inputNumber, radio
 
 ```ts
 const formItems = reactive([

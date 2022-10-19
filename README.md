@@ -9,7 +9,7 @@
 **English** | [中文](./README.zh-CN.md)
 
 
--[Preview](https://pkg-demo.netlify.app/)
+- [Preview](https://pkg-demo.netlify.app/)
 
 
 ## 🚀 Features
@@ -46,7 +46,7 @@ import { ElpForm } from "elp-form";
 
 ### Configuration: formItems(required)
 
-- Support component types: input, select, switch, TimeSelect
+- Support component types: input, select, switch, TimeSelect, inputNumber, radio
 
 ```ts
 const formItems =  reactive([

@@ -15,6 +15,8 @@ import {
   ElTimePicker,
   ElInputNumber,
   ElSwitch,
+  ElRadio,
+  ElRadioGroup,
   type FormInstance,
   type FormRules
 } from "element-plus";
@@ -122,6 +124,12 @@ export default defineComponent({
           <ElInputNumber {...(item.attribute || {})} v-model={form[item.value]} />
         </ElFormItem>
       ),
+      // radio
+      renderRadio:(item: any) => (
+        <ElFormItem label={item.label} prop={item.value}>
+          <ElRadio {...(item.attribute || {})} v-model={form[item.value]} />
+        </ElFormItem>
+      ),
     };
 
     return () => (
@@ -151,6 +159,8 @@ export default defineComponent({
                             return renderElement.renderSwitch(item);
                           } else if (item.type === "inputNumber") {
                             return renderElement.renderInputNumber(item);
+                          } else if (item.type === "radio") {
+                            return renderElement.renderRadio(item);
                           }
                         })}
                     </ElCol>
@@ -166,6 +176,10 @@ export default defineComponent({
                   return renderElement.renderDatePicker(item);
                 } else if (item.type === "switch") {
                   return renderElement.renderSwitch(item);
+                } else if (item.type === "inputNumber") {
+                  return renderElement.renderInputNumber(item);
+                } else if (item.type === "radio") {
+                  return renderElement.renderRadio(item);
                 }
               })}
           <ElFormItem>
