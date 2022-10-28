@@ -142,7 +142,7 @@ const formItems = reactive([
     change: (val: any) => {
       console.log('switch11', val)
       ElMessage({
-        message: val ? '开' : '关',
+        message: val ? 'Open' : 'Close',
         type: 'success',
       })
     },
