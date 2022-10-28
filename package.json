@@ -1,6 +1,6 @@
 {
   "name": "elp-form",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "packageManager": "pnpm@7.0.1",
   "description": "Easier to build Form based on element-plus",
   "keywords": [
