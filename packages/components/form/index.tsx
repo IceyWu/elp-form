@@ -17,6 +17,7 @@ import {
   ElSwitch,
   ElRadio,
   ElRadioGroup,
+  ElUpload,
   type FormInstance,
   type FormRules
 } from "element-plus";
@@ -40,6 +41,14 @@ const props = {
     default: () => []
   },
   formAttr: {
+    type: Object,
+    default: () => ({})
+  },
+  hooks: {
+    type: Object,
+    default: () => ({})
+  },
+  slots: {
     type: Object,
     default: () => ({})
   }
@@ -85,15 +94,53 @@ export default defineComponent({
         .sort((a, b) => a.rowIndex - b.rowIndex)
         .concat(formItemsWithoutRowIndex);
     });
+    // render组件列表
     const renderElement = {
+      // Input 输入框
       renderInput: (item: any) => (
         <ElFormItem label={item.label} prop={item.value}>
-          <ElInput {...(item.attribute || {})} v-model={form[item.value]} />
+          <ElInput
+            {...(item.attribute || {})}
+            v-model={form[item.value]}
+            onBlur={item.hooks?.blur}
+            onFocus={item.hooks?.focus}
+            onChange={item.hooks?.change}
+            onInput={item.hooks?.input}
+            onClear={item.hooks?.clear}
+          >
+            {item.slots && Object.keys(item.slots).length > 0
+              ? Object.keys(item.slots).map((slotName: string) => {
+                  return item.slots[slotName]();
+                })
+              : null}
+          </ElInput>
         </ElFormItem>
       ),
+      // Input Number 数字输入框
+      renderInputNumber: (item: any) => (
+        <ElFormItem label={item.label} prop={item.value}>
+          <ElInputNumber
+            {...(item.attribute || {})}
+            v-model={form[item.value]}
+            onChange={item.hooks?.change}
+            onBlur={item.hooks?.blur}
+            onFocus={item.hooks?.focus}
+          />
+        </ElFormItem>
+      ),
+      // Select 选择器
       renderSelect: (item: any) => (
         <ElFormItem label={item.label} prop={item.value}>
-          <ElSelect {...(item.attribute || {})} v-model={form[item.value]}>
+          <ElSelect
+            {...(item.attribute || {})}
+            v-model={form[item.value]}
+            onChange={item.hooks?.change}
+            onBlur={item.hooks?.blur}
+            onFocus={item.hooks?.focus}
+            onVisibleChange={item.hooks?.visibleChange}
+            onRemoveTag={item.hooks?.removeTag}
+            onClear={item.hooks?.clear}
+          >
             {item.options.map((option: any) => (
               <ElOption
                 label={option.label}
@@ -115,26 +162,47 @@ export default defineComponent({
       // Switch
       renderSwitch: (item: any) => (
         <ElFormItem label={item.label} prop={item.value}>
-          <ElSwitch {...(item.attribute || {})} v-model={form[item.value]} />
+          <ElSwitch
+            {...(item.attribute || {})}
+            v-model={form[item.value]}
+            onChange={item.hooks?.change}
+          />
         </ElFormItem>
       ),
-      // inputNumber
-      renderInputNumber:(item: any) => (
-        <ElFormItem label={item.label} prop={item.value}>
-          <ElInputNumber {...(item.attribute || {})} v-model={form[item.value]} />
-        </ElFormItem>
-      ),
+
       // radio
-      renderRadio:(item: any) => (
+      renderRadio: (item: any) => (
         <ElFormItem label={item.label} prop={item.value}>
           <ElRadio {...(item.attribute || {})} v-model={form[item.value]} />
         </ElFormItem>
       ),
+      // Upload 上传
+      renderUpload: (item: any) => (
+        <ElFormItem label={item.label} prop={item.value}>
+          <ElUpload
+            {...(item.attribute || {})}
+            v-model={form[item.value]}
+            onChange={item.hooks?.change}
+            onPreview={item.hooks?.preview}
+            onRemove={item.hooks?.remove}
+            onSuccess={item.hooks?.success}
+            onExceed={item.hooks?.exceed}
+            onProgress={item.hooks?.progress}
+            onError={item.hooks?.error}
+            onBeforeUpload={item.hooks?.beforeUpload}
+          >
+            {item.slots && Object.keys(item.slots).length > 0
+              ? Object.keys(item.slots).map((slotName: string) => {
+                  return item.slots[slotName]();
+                })
+              : null}
+          </ElUpload>
+        </ElFormItem>
+      )
     };
 
     return () => (
       <>
-        {/* 如果有layoutConfig则根据layoutConfig进行渲染 */}
         <ElForm
           ref={ruleFormRef}
           model={form}
@@ -161,6 +229,8 @@ export default defineComponent({
                             return renderElement.renderInputNumber(item);
                           } else if (item.type === "radio") {
                             return renderElement.renderRadio(item);
+                          } else if (item.type === "upload") {
+                            return renderElement.renderUpload(item);
                           }
                         })}
                     </ElCol>
@@ -180,6 +250,8 @@ export default defineComponent({
                   return renderElement.renderInputNumber(item);
                 } else if (item.type === "radio") {
                   return renderElement.renderRadio(item);
+                } else if (item.type === "upload") {
+                  return renderElement.renderUpload(item);
                 }
               })}
           <ElFormItem>

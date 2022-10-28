@@ -8,9 +8,7 @@
 
 **English** | [中文](./README.zh-CN.md)
 
-
 - [Preview](https://pkg-demo.netlify.app/)
-
 
 ## 🚀 Features
 
@@ -18,6 +16,7 @@
 - 🐱 **Component basic attributes are retained**: Keep all the attribute configuration of the `element-plus` [Form](https://element-plus.org/zh-CN/component/table.html), [Input](https://element-plus.org/zh-CN/component/input.html) and other components, flexibly configure the attributes of a single form item
 - 🎈 **Form input verification**: Through the `rules` configuration, you can customize the form verification rules, support all rules of `element-plus` [Form](https://element-plus.org/zh-CN/component/form.html#rules)
 - 🥏 **Built-in submission and reset**: Submit the form with one click, reset the form with one click
+- 🚩 **Slots and hooks**: Through the `hooks` property and the `slots` property, you can customize the form slots and hooks
 
 ## 📦 Install
 
@@ -46,7 +45,7 @@ import { ElpForm } from "elp-form";
 
 ### Configuration: formItems(required)
 
-- Support component types: input, select, switch, TimeSelect, inputNumber, radio
+- Support component types: input, select, switch, TimeSelect, inputNumber, radio, upload
 
 ```ts
 const formItems =  reactive([
@@ -61,6 +60,15 @@ const formItems =  reactive([
       ... /** Form label other attributes `optional` */
     },
     rowIndex?: number, /** Form label row index, can be controlled by layoutConfig `optional` */
+    hook?: {
+      change?: (value: any) => void, /** Form label change event `optional` */
+      ... /** Form label other hooks `optional` */
+    },
+    slots?: {
+      prepend?: string, /** Form label prepend slot `optional` */
+      append?: string, /** Form label append slot `optional` */
+      ... /** Form label other slots `optional` */
+    },
   },
   ...
 
@@ -119,6 +127,53 @@ const layoutConfig = [
 ];
 ```
 
+### Configuration: hooks(optional)
+
+- Configure the form hook function to provide all the hook functions of the component
+- Through the `hooks` property, you can customize the form component hook
+
+```ts
+const formItems = reactive([
+{
+  label?: string;,  /** Form label text `optional` */
+  type: 'switch', /** Form label type(input,select,date) `required` */
+  ...,
+  hooks: {
+    change: (val: any) => {
+      console.log('switch11', val)
+      ElMessage({
+        message: val ? '开' : '关',
+        type: 'success',
+      })
+    },
+  },
+  ...
+},
+...
+]);
 ```
 
+### Configuration: slots(optional)
+
+- Configure the form slot function to provide all the slot functions of the component
+- Through the `slots` property, you can customize the form component slot
+
+```ts
+const formItems = reactive([
+{
+  label?: string;,  /** Form label text `optional` */
+  type: 'input', /** Form label type(input,select,date) `required` */
+  ...,
+  slots: {
+    prepend: () => {
+      return <span>prepend</span>
+    },
+    append: () => {
+      return <span>append</span>
+    },
+  },
+  ...
+},
+...
+]);
 ```
